@@ -47,34 +47,10 @@ public class DoublyLinkedList<T> {
         head = node;
     }
 
-    public Node<T> replaceItemAndMoveToFront(Node<T> node, T newValue) {
-        if (node == head) {
-            Node<T> next = head.getNext();
-            head = new Node<T>(newValue);
-            head.setNext(next);
-            return head;
-        }
-
-        if (node == tail) {
-            Node<T> prev = tail.getPrev();
-            prev.setNext(null);
-            tail = prev;
-            Node<T> newHead = new Node<>(newValue);
-            head.setPrev(newHead);
-            newHead.setNext(head);
-            head = newHead;
-            return head;
-        }
-
-        Node<T> prev = node.getPrev();
-        Node<T> next = node.getNext();
-        Node<T> newHead = new Node<T>(newValue);
-        prev.setNext(next);
-        next.setPrev(prev);
-        head.setPrev(newHead);
-        newHead.setNext(head);
-        head = newHead;
-        return head;
+    public Node<T> replaceValueAndMoveToFront(Node<T> node, T newValue) {
+        node.setValue(newValue);
+        moveToFront(node);
+        return node;
     }
 
     public T deleteLast() {

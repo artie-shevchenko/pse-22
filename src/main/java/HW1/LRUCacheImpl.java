@@ -19,7 +19,8 @@ public class LRUCacheImpl<K, V> extends LRUCache<K, V> {
         }
 
         prioritizedValues.moveToFront(node);
-        return node.getValue().getValue();
+        final Entry<K, V> entry = node.getValue();
+        return entry.getValue();
     }
 
     @Override
@@ -38,7 +39,7 @@ public class LRUCacheImpl<K, V> extends LRUCache<K, V> {
         }
 
         var newNode = prioritizedValues
-                .replaceItemAndMoveToFront(node, new Entry<>(key, value));
+                .replaceValueAndMoveToFront(node, new Entry<>(key, value));
         keys.put(key, newNode);
     }
 }

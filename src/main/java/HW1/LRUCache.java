@@ -15,6 +15,10 @@ public abstract class LRUCache<K, V> {
         return doGet(key);
     }
 
+    /**
+     * Note: if {@code key} is not yet present in cache and cache is already full then the least\
+     * recently used element is deleted.
+     */
     public void put(K key, V value) {
         assert key != null;
 
